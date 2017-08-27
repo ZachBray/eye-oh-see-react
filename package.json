@@ -1,26 +1,26 @@
 {
-  "name": "scaffold-typescript-library",
-  "version": "1.0.0",
-  "main": "dist/src/Calculator.js",
-  "typings": "dist/src/Calculator.d.ts",
+  "name": "eye-oh-see-react",
+  "version": "0.0.1",
+  "main": "dist/src/",
+  "typings": "dist/src/",
   "scripts": {
     "clean": "rimraf dist",
     "lint": "tslint ./**/*.ts",
     "pretest": "yarn run lint",
-    "test": "mocha --require ts-node/register test/**/*.ts",
+    "test": "echo TODO write tests",
     "prebuild": "yarn run clean && yarn run test",
     "build": "tsc --outDir ./dist -p . ",
     "precommit": "yarn run build"
   },
   "devDependencies": {
-    "@types/chai": "4.0.4",
-    "@types/mocha": "2.2.40",
-    "chai": "4.1.1",
-    "husky": "0.14.3",
-    "mocha": "3.5.0",
+    "@types/react": "16.x",
+    "eye-oh-see": "0.5.x",
     "rimraf": "2.6.1",
-    "ts-node": "3.0.2",
-    "tslint": "5.0.0",
-    "typescript": "2.2.2"
+    "tslint": "5.7.0",
+    "typescript": "2.4.2"
+  },
+  "peerDependencies": {
+    "eye-oh-see": "0.5.x",
+    "react": "15.x"
   }
 }
