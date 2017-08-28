@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "lib": ["dom", "es6", "scripthost"],
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,

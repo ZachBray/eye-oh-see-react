@@ -20,31 +20,28 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var ContainerProvider_1 = require("./ContainerProvider");
-function resolveProps(propsToResolve, container) {
-    var props = {};
-    for (var k in propsToResolve) {
-        if (propsToResolve.hasOwnProperty(k)) {
-            props[k] = container.resolve(propsToResolve[k]);
-        }
-    }
-    return props;
-}
-function Connect(config) {
+function connect(resolveProps) {
     return function (childComponent) {
         var ContainerConsumer = (function (_super) {
             __extends(ContainerConsumer, _super);
             function ContainerConsumer() {
-                return _super !== null && _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.state = {
+                    resolvedProps: null,
+                };
+                return _this;
             }
             ContainerConsumer.prototype.componentWillMount = function () {
-                this.container = this.context.container.createChild(config.scopeName);
-                this.propsToResolve = resolveProps(config.propsToResolve, this.container);
+                var _this = this;
+                var resolvedProps$ = resolveProps(this.context.container);
+                this.subscription = resolvedProps$.subscribe(function (resolvedProps) { return _this.setState({ resolvedProps: resolvedProps }); });
             };
             ContainerConsumer.prototype.componentWillUnmount = function () {
-                this.container.dispose();
+                this.subscription.dispose();
             };
             ContainerConsumer.prototype.render = function () {
-                return React.createElement(childComponent, __assign({}, this.propsToResolve, this.props), this.props.children);
+                // todo - defer until props are ready?
+                return React.createElement(childComponent, __assign({}, this.state.resolvedProps, this.props), this.props.children);
             };
             ContainerConsumer.contextTypes = ContainerProvider_1.ContainerProvider.childContextTypes;
             return ContainerConsumer;
@@ -52,5 +49,5 @@ function Connect(config) {
         return ContainerConsumer;
     };
 }
-exports.Connect = Connect;
+exports.connect = connect;
 //# sourceMappingURL=Connect.js.map
