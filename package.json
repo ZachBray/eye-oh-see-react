@@ -1,8 +1,8 @@
 {
   "name": "eye-oh-see-react",
   "version": "0.0.1",
-  "main": "dist/Index.js",
-  "typings": "dist/Index.d.ts",
+  "main": "",
+  "types": "",
   "scripts": {
     "clean": "rimraf dist",
     "lint": "tslint ./**/*.ts",
@@ -14,7 +14,9 @@
   },
   "devDependencies": {
     "@types/react": "16.x",
-    "@types/rx": "^4.x",
+    "@types/react-dom": "15.x",
+    "@types/rx": "4.x",
+    "@types/webpack-env": "1.13.0",
     "eye-oh-see": "0.5.x",
     "rimraf": "2.6.1",
     "tslint": "5.7.0",
@@ -23,6 +25,7 @@
   "peerDependencies": {
     "eye-oh-see": "0.5.x",
     "react": "15.x",
+    "react-dom": "15.x",
     "rx": "4.x"
   }
 }

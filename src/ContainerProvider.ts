@@ -9,7 +9,7 @@ export interface IContainerContext {
   container: Container;
 }
 
-export class ContainerProvider extends React.Component<IContainerProviderProps, void> {
+export class ContainerProvider extends React.Component<IContainerProviderProps, {}> {
   public static childContextTypes = {
     container: React.PropTypes.object as any,
   };

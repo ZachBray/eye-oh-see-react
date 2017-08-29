@@ -2,7 +2,13 @@
 # yarn lockfile v1
 
 
-"@types/react@16.x":
+"@types/react-dom@15.x":
+  version "15.5.4"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-15.5.4.tgz#3f75ba86a2ce9a7d1d9e7d1ee3f186f3a9652d8f"
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@16.x":
   version "16.0.5"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.5.tgz#d713cf67cc211dea20463d2a0b66005c22070c4b"
 
@@ -77,7 +83,7 @@
     "@types/rx-core" "*"
     "@types/rx-core-binding" "*"
 
-"@types/rx@^4.1.1":
+"@types/rx@4.x":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@types/rx/-/rx-4.1.1.tgz#598fc94a56baed975f194574e0f572fd8e627a48"
   dependencies:
@@ -93,6 +99,10 @@
     "@types/rx-lite-testing" "*"
     "@types/rx-lite-time" "*"
     "@types/rx-lite-virtualtime" "*"
+
+"@types/webpack-env@1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.0.tgz#3044381647e11ee973c5af2e925323930f691d80"
 
 ansi-regex@^2.0.0:
   version "2.1.1"

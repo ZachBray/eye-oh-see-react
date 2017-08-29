@@ -7,7 +7,7 @@ export interface IContainerProviderProps {
 export interface IContainerContext {
     container: Container;
 }
-export declare class ContainerProvider extends React.Component<IContainerProviderProps, void> {
+export declare class ContainerProvider extends React.Component<IContainerProviderProps, {}> {
     static childContextTypes: {
         container: any;
     };
