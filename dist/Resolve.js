@@ -40,16 +40,4 @@ function Resolve(component) {
     };
 }
 exports.Resolve = Resolve;
-function ByType(resolvable) {
-    return function (container) {
-        var resolved = {};
-        for (var key in resolvable) {
-            if (resolvable.hasOwnProperty(key)) {
-                resolved[key] = container.resolve(resolvable[key]);
-            }
-        }
-        return resolved;
-    };
-}
-exports.ByType = ByType;
 //# sourceMappingURL=Resolve.js.map

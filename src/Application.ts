@@ -5,19 +5,20 @@ import { ContainerProvider } from "./ContainerProvider";
 import { Module } from "./Module";
 import { NullReloadable } from "./NullReloadable";
 import { Reloadable } from "./Reloadable";
-import { RootElementProvider } from "./RootElementProvider";
 
 const context = window as any;
 const reloadableState: { [key: string]: any } = context.__reloadableState || (context.__reloadableState = {});
 
 export class Application {
-  private rootElement: HTMLDivElement;
+  private rootHtmlElement: HTMLDivElement;
+  private rootElement: JSX.Element;
   private container: Container;
   private reloadables: Reloadable[];
 
   constructor(private iocModules: Module[]) {}
 
-  public start(appModule?: __WebpackModuleApi.Module) {
+  public start(rootElement: JSX.Element, appModule?: __WebpackModuleApi.Module) {
+    this.rootElement = rootElement;
     this.container = new Container();
     this.bootstrapContainer();
     this.reloadState();
@@ -29,8 +30,8 @@ export class Application {
   }
 
   public stop() {
-    ReactDOM.unmountComponentAtNode(this.rootElement);
-    document.body.removeChild(this.rootElement);
+    ReactDOM.unmountComponentAtNode(this.rootHtmlElement);
+    document.body.removeChild(this.rootHtmlElement);
     this.saveReloadableState();
     this.container.dispose();
   }
@@ -62,11 +63,10 @@ export class Application {
   }
 
   private renderRoot() {
-    const provider = this.container.resolveAbstract<RootElementProvider>(RootElementProvider);
-    this.rootElement = document.createElement("div");
-    document.body.appendChild(this.rootElement);
+    this.rootHtmlElement = document.createElement("div");
+    document.body.appendChild(this.rootHtmlElement);
     const containerProps = { container: this.container };
-    const containerRoot = React.createElement(ContainerProvider, containerProps, provider.rootElement);
-    ReactDOM.render(containerRoot, this.rootElement);
+    const containerRoot = React.createElement(ContainerProvider, containerProps, this.rootElement);
+    ReactDOM.render(containerRoot, this.rootHtmlElement);
   }
 }

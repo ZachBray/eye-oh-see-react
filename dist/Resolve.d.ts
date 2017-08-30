@@ -7,10 +7,3 @@ export interface IContainerResolverProps<TResolvedProps> {
 }
 export declare type Resolver<TResolved, TUnresolved> = (container: Container, unresolved: TUnresolved) => TResolved;
 export declare function Resolve<TResolved extends {}, TUnresolved>(component: React.ComponentClass<TResolved & TUnresolved>): (resolver: Resolver<TResolved, TUnresolved>) => React.ComponentClass<TUnresolved>;
-export interface IConstructor<T> {
-    new (...args: any[]): T;
-}
-export declare type ResolvableProps<T> = {
-    [P in keyof T]: IConstructor<T[P]>;
-};
-export declare function ByType<TResolved>(resolvable: ResolvableProps<TResolved>): (container: Container) => TResolved;

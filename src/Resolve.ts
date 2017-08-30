@@ -31,23 +31,3 @@ export function Resolve<TResolved extends {}, TUnresolved>(component: React.Comp
     return ComponentPropResolverWrapper;
   };
 }
-
-export interface IConstructor<T> {
-  new(...args: any[]): T;
-}
-
-export type ResolvableProps<T> = {
-  [P in keyof T]: IConstructor<T[P]>
-};
-
-export function ByType<TResolved>(resolvable: ResolvableProps<TResolved>) {
-  return (container: Container) => {
-    const resolved = {} as TResolved;
-    for (const key in resolvable) {
-      if (resolvable.hasOwnProperty(key)) {
-        resolved[key] = container.resolve(resolvable[key]);
-      }
-    }
-    return resolved;
-  };
-}

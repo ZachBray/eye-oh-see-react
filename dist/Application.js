@@ -6,15 +6,15 @@ var ReactDOM = require("react-dom");
 var ContainerProvider_1 = require("./ContainerProvider");
 var NullReloadable_1 = require("./NullReloadable");
 var Reloadable_1 = require("./Reloadable");
-var RootElementProvider_1 = require("./RootElementProvider");
 var context = window;
 var reloadableState = context.__reloadableState || (context.__reloadableState = {});
 var Application = (function () {
     function Application(iocModules) {
         this.iocModules = iocModules;
     }
-    Application.prototype.start = function (appModule) {
+    Application.prototype.start = function (rootElement, appModule) {
         var _this = this;
+        this.rootElement = rootElement;
         this.container = new eye_oh_see_1.Container();
         this.bootstrapContainer();
         this.reloadState();
@@ -25,8 +25,8 @@ var Application = (function () {
         }
     };
     Application.prototype.stop = function () {
-        ReactDOM.unmountComponentAtNode(this.rootElement);
-        document.body.removeChild(this.rootElement);
+        ReactDOM.unmountComponentAtNode(this.rootHtmlElement);
+        document.body.removeChild(this.rootHtmlElement);
         this.saveReloadableState();
         this.container.dispose();
     };
@@ -55,12 +55,11 @@ var Application = (function () {
         });
     };
     Application.prototype.renderRoot = function () {
-        var provider = this.container.resolveAbstract(RootElementProvider_1.RootElementProvider);
-        this.rootElement = document.createElement("div");
-        document.body.appendChild(this.rootElement);
+        this.rootHtmlElement = document.createElement("div");
+        document.body.appendChild(this.rootHtmlElement);
         var containerProps = { container: this.container };
-        var containerRoot = React.createElement(ContainerProvider_1.ContainerProvider, containerProps, provider.rootElement);
-        ReactDOM.render(containerRoot, this.rootElement);
+        var containerRoot = React.createElement(ContainerProvider_1.ContainerProvider, containerProps, this.rootElement);
+        ReactDOM.render(containerRoot, this.rootHtmlElement);
     };
     return Application;
 }());
