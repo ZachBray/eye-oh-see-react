@@ -49,4 +49,4 @@ function Intent(intentKeys) {
     return { read: read, write: write };
 }
 exports.Intent = Intent;
-//# sourceMappingURL=MVI.js.map
+//# sourceMappingURL=Model.js.map

@@ -26,6 +26,7 @@
     "eye-oh-see": "0.5.x",
     "react": "15.x",
     "react-dom": "15.x",
+    "react-jss": "7.x",
     "rx": "4.x"
   }
 }

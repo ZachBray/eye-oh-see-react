@@ -9,10 +9,19 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var rx_1 = require("rx");
-function Reactive(dumbComponent) {
+function View(dumbComponent) {
     var ReactiveComponentWrapper = (function (_super) {
         __extends(ReactiveComponentWrapper, _super);
         function ReactiveComponentWrapper() {
@@ -36,8 +45,9 @@ function Reactive(dumbComponent) {
         };
         ReactiveComponentWrapper.prototype.subscribeToProps = function (props) {
             var _this = this;
-            var intent = props.intent, state$ = props.state$;
+            var _a = props, intent = _a.intent, state$ = _a.state$, rest = __rest(_a, ["intent", "state$"]);
             this.setState(intent.write);
+            this.setState(rest);
             var subscription = state$.subscribe(function (stateValue) { return _this.setState(stateValue); });
             this.subscription.setDisposable(subscription);
         };
@@ -45,5 +55,5 @@ function Reactive(dumbComponent) {
     }(React.Component));
     return ReactiveComponentWrapper;
 }
-exports.Reactive = Reactive;
-//# sourceMappingURL=Reactive.js.map
+exports.View = View;
+//# sourceMappingURL=View.js.map

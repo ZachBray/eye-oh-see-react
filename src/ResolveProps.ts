@@ -4,7 +4,7 @@ import { ContainerProvider , IContainerContext } from "./ContainerProvider";
 
 export type Resolver<TResolved, TUnresolved> = (container: Container, unresolved: TUnresolved) => TResolved;
 
-export function ResolveProps<TResolved, TUnresolved>(component: React.ComponentClass<TResolved & TUnresolved>) {
+export function ResolveProps<TResolved, TUnresolved>(component: React.ComponentClass<TResolved>) {
   return (resolver: Resolver<TResolved, TUnresolved>): React.ComponentClass<TUnresolved> => {
     class ComponentPropResolverWrapper extends React.Component<TUnresolved, {}> {
       public static contextTypes = ContainerProvider.childContextTypes;
@@ -16,11 +16,7 @@ export function ResolveProps<TResolved, TUnresolved>(component: React.ComponentC
       }
 
       public render() {
-        return React.createElement(component, {
-          // need casts until: https://github.com/Microsoft/TypeScript/issues/13557
-          ...(this.props as any),
-          ...(this.resolved as any),
-        }, this.props.children);
+        return React.createElement(component, this.resolved, this.props.children);
       }
     }
     return ComponentPropResolverWrapper;
