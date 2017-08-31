@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/// <reference path="./typings/react-jss.d.ts" />
 var react_jss_1 = require("react-jss");
 var View_1 = require("./View");
 function StyledView(styleObj) {

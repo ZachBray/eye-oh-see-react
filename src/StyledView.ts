@@ -1,3 +1,4 @@
+/// <reference path="./typings/react-jss.d.ts" />
 import { default as injectSheet , IStyle , StylingProps } from "react-jss";
 import { IModel , WriteIntent } from "./Model";
 import { View } from "./View";

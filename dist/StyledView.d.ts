@@ -1,3 +1,4 @@
+/// <reference path="../src/typings/react-jss.d.ts" />
 /// <reference types="react" />
 import { IStyle, StylingProps } from "react-jss";
 import { IModel, WriteIntent } from "./Model";
