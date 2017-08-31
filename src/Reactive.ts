@@ -1,11 +1,11 @@
 import * as React from "react";
 import { SerialDisposable } from "rx";
-import { IModel } from "./IModel";
+import { IModel, WriteIntent } from "./MVI";
 
-export function Reactive<TState, TIntent>(dumbComponent: React.ComponentType<TState & TIntent>)
+export function Reactive<TIntent, TState>(dumbComponent: React.ComponentType<TState & WriteIntent<TIntent>>)
                                          : React.ComponentClass<IModel<TIntent, TState>> {
   class ReactiveComponentWrapper extends React.Component<IModel<TIntent, TState>, {}> {
-    public state = {} as TState & TIntent;
+    public state = {} as TState & WriteIntent<TIntent>;
     private readonly subscription = new SerialDisposable();
 
     public componentWillMount() {
@@ -26,9 +26,9 @@ export function Reactive<TState, TIntent>(dumbComponent: React.ComponentType<TSt
     }
 
     private subscribeToProps(props: Readonly<IModel<TIntent, TState>>) {
-      const { intent , state } = props;
-      this.setState(intent);
-      const subscription = state.subscribe(stateValue => this.setState(stateValue));
+      const { intent , state$ } = props;
+      this.setState(intent.write);
+      const subscription = state$.subscribe(stateValue => this.setState(stateValue));
       this.subscription.setDisposable(subscription);
     }
   }

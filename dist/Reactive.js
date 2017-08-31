@@ -36,9 +36,9 @@ function Reactive(dumbComponent) {
         };
         ReactiveComponentWrapper.prototype.subscribeToProps = function (props) {
             var _this = this;
-            var intent = props.intent, state = props.state;
-            this.setState(intent);
-            var subscription = state.subscribe(function (stateValue) { return _this.setState(stateValue); });
+            var intent = props.intent, state$ = props.state$;
+            this.setState(intent.write);
+            var subscription = state$.subscribe(function (stateValue) { return _this.setState(stateValue); });
             this.subscription.setDisposable(subscription);
         };
         return ReactiveComponentWrapper;

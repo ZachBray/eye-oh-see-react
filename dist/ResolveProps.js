@@ -20,7 +20,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var ContainerProvider_1 = require("./ContainerProvider");
-function Resolve(component) {
+function ResolveProps(component) {
     return function (resolver) {
         var ComponentPropResolverWrapper = (function (_super) {
             __extends(ComponentPropResolverWrapper, _super);
@@ -39,5 +39,5 @@ function Resolve(component) {
         return ComponentPropResolverWrapper;
     };
 }
-exports.Resolve = Resolve;
-//# sourceMappingURL=Resolve.js.map
+exports.ResolveProps = ResolveProps;
+//# sourceMappingURL=ResolveProps.js.map

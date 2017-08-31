@@ -2,14 +2,9 @@ import { Container } from "eye-oh-see";
 import * as React from "react";
 import { ContainerProvider , IContainerContext } from "./ContainerProvider";
 
-export interface IContainerResolverProps<TResolvedProps> {
-  scopeName: string;
-  children: (props: TResolvedProps) => JSX.Element;
-}
-
 export type Resolver<TResolved, TUnresolved> = (container: Container, unresolved: TUnresolved) => TResolved;
 
-export function Resolve<TResolved extends {}, TUnresolved>(component: React.ComponentClass<TResolved & TUnresolved>) {
+export function ResolveProps<TResolved, TUnresolved>(component: React.ComponentClass<TResolved & TUnresolved>) {
   return (resolver: Resolver<TResolved, TUnresolved>): React.ComponentClass<TUnresolved> => {
     class ComponentPropResolverWrapper extends React.Component<TUnresolved, {}> {
       public static contextTypes = ContainerProvider.childContextTypes;
