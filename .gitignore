@@ -2,6 +2,5 @@
 .idea/*.*
 *.log
 node_modules
-typings
 *.swp
 *.swo
