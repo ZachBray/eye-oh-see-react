@@ -9,4 +9,10 @@ function StyledView(styleObj) {
     };
 }
 exports.StyledView = StyledView;
+function StyledDumbView(styleObj) {
+    return function (component) {
+        return react_jss_1.default(styleObj)(component);
+    };
+}
+exports.StyledDumbView = StyledDumbView;
 //# sourceMappingURL=StyledView.js.map
