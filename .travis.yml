@@ -2,8 +2,7 @@ language: node_js
 node_js:
 - "6"
 install:
-- yarn global add typings tslint typescript
-- typings i
+- yarn global add tslint typescript
 - yarn
 script:
 - yarn run build
