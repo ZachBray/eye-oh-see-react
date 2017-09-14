@@ -15,5 +15,5 @@ declare module "react-jss" {
     React.ComponentType<StylingProps<TStyle, TProps>>;
 
   export default function injectSheet<TStyle extends IStyle, TProps>(style: TStyle)
-                  : (component: ComponentNeedingStyling<TStyle, TProps>) => React.ComponentType<TProps>;
+                  : (component: ComponentNeedingStyling<TStyle, TProps>) => React.ComponentClass<TProps>;
 }

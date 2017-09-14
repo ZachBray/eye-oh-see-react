@@ -5,12 +5,12 @@ import { View } from "./View";
 
 export function StyledView<TIntent, TState, TStyle extends IStyle, TRest>(styleObj: TStyle) {
   return (component: React.ComponentType<StylingProps<TStyle, TState & WriteIntent<TIntent> & TRest>>)
-         : React.ComponentType<IModel<TIntent, TState> & TRest> =>
+         : React.ComponentClass<IModel<TIntent, TState> & TRest> =>
     View<TIntent, TState, TRest>(injectSheet<TStyle, TState & WriteIntent<TIntent> & TRest>(styleObj)(component));
 }
 
 export function StyledDumbView<TStyle extends IStyle, TRest>(styleObj: TStyle) {
   return (component: React.ComponentType<StylingProps<TStyle, TRest>>)
-         : React.ComponentType<TRest> =>
+         : React.ComponentClass<TRest> =>
     injectSheet<TStyle, TRest>(styleObj)(component);
 }
